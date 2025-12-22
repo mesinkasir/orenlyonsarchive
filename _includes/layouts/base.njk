@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+{% include "partials/seo.njk" %}
+</head>
+<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+<body>
+{% include "partials/header.njk" %}
+<main>
+{{content|safe}}
+</main>
+{% include "partials/footer.njk" %}
+</body>
+</html>

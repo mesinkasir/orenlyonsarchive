@@ -1,0 +1,15 @@
+    <footer class="py-5"
+    style="background-image: url('{{ footer.bg_image }}'); background-color: {{ footer.color or 'white' }}; color: {{footer.font_color or 'inherit'}}">
+        <div class="container text-center">
+            <h2 class="serif h3 mb-4 tracking-tighter">{{footer.title}}</h2>
+            <div class="d-flex justify-content-center gap-4 mb-5">{% for s in footer.social %}
+                <a href="{{s.url}}" title="{{s.title}}" class="text-white opacity-75 text-decoration-none text-white">
+                    <i class="{{s.icon}}"></i>
+                </a>{% endfor %}
+            </div>
+            <p class="small opacity-75 tracking-widest">{{footer.copyrights}} | 
+                Built with <a href="https://www.11ty.dev/" class="text-white">{{ eleventy.generator }}</a>
+             | Maintained by <a href="https://adamdjbrett.com"  class="text-white">Adam DJ Brett</a></p>
+        </div>
+    </footer>
+    {% getBundle "fontawesome" %}

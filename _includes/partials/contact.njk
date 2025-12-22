@@ -1,0 +1,24 @@
+        <section id="{{contact.ids}}" class="section-padding"
+        style="background-image: url('{{ contact.bg_image }}'); background-color: {{ contact.color or 'white' }}; color: {{contact.font_color or 'inherit'}}">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-5 p-3 p-md-5">
+                        <h2 class="display-4 serif fw-bold">{{contact.title}}.</h2>
+                        <address class="mt-4 fs-5 opacity-75">{{contact.address}}</address>
+                    </div>
+                    <div class="col-md-7 p-3 p-md-5">
+                        <form class="form-underlined" action="{{formspree_id}}" method="POST">
+                            <div class="mb-4">
+                                <label for="n" class="small text-uppercase tracking-widest text-muted">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required placeholder="Your Name">
+                            </div>
+                            <div class="mb-4">
+                                <label for="e" class="small text-uppercase tracking-widest text-muted">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required placeholder="info@domain.com">
+                            </div>
+                            <button type="submit" class="btn btn-dark rounded-0 px-5 py-3 tracking-widest text-uppercase small">{{contact.button}}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>

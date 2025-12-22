@@ -1,0 +1,22 @@
+logo: 
+  image: https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png
+  width: "30px"
+  height: "30px"
+title: Oren Lyons
+menu: "MENU"
+item: 
+  - nav: Home
+    url: "#"
+  - nav: About
+    url: "#about"
+  - nav: Impact
+    url: "#impact"
+  - nav: Support
+    url: "#opportunities"
+  - nav: Gallery
+    url: "#gallery"
+  - nav: Sponsors
+    url: "#sponsors"
+button: 
+  text: Contact Now
+  url: "#contact"

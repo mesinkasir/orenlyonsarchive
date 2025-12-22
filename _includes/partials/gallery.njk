@@ -1,0 +1,30 @@
+<section id="{{gallery.ids}}" class="section-padding" style="background-image: url('{{ gallery.bg_image }}'); background-color: {{ gallery.color or 'white' }}; color: {{gallery.font_color or 'inherit'}}">
+    <div class="container">
+        <h2 class="display-4 serif fw-bold mb-5 text-center">{{gallery.title}}</h2>
+        <div class="row g-4 justify-content-center">{% for g in gallery.item %}
+            <div class="col-md-3 col-6">
+                <a href="#{{g.ids}}" class="gallery-item">
+                    <img src="{{g.image}}" class="img-gallery zoom" loading="lazy" alt="{{g.alt}}">
+                </a>
+            </div>
+            <div id="{{g.ids}}" class="modal-css">
+    <div class="modal-content-custom bg-white" style="max-width: 800px;">
+        <a href="#{{gallery.ids}}" class="modal-close">&times;</a>
+        <div class="w-100">
+            <div class="text-center">
+                <img src="{{g.image}}" 
+                     class="modal-img-vertical" 
+                     alt="{{g.alt}}">
+            </div>            
+            <div class="p-4 p-lg-5 text-center">
+                <h3 class="serif h2 mb-3">{{g.ids}}</h3>
+                <p class="mb-4">{{g.info}}</p>
+                <a href="#gallery" class="btn-alfie" style="color:var(--black)">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+            {% endfor %}
+            </div>
+    </div>
+</section>

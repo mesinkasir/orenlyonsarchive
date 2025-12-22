@@ -1,0 +1,18 @@
+title: Oren Lyons
+copyrights: © 2025 Oren Lyons
+color: "#000"
+font_color: "#fff"
+ids: contact
+social :
+  - url: https://fb.com/***
+    icon: fab fa-facebook
+    title: Facebook
+  - url: https://x.com/***
+    icon: fab fa-twitter
+    title: Twitter
+  - url: https://ig.com/***
+    icon: fab fa-instagram
+    title: Instagram
+  - url: https://github.com/***
+    icon: fab fa-github
+    title: Github

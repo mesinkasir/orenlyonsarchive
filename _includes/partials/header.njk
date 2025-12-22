@@ -1,0 +1,28 @@
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom py-3" aria-label="Main Navigation">
+            <div class="container">
+                <a class="navbar-brand fw-bold serif fs-3 text-uppercase tracking-tighter" href="{{metadata.url}}" aria-label="{{navbar.title}}">
+                    <img class="img-fluid me-3" alt="{{navbar.title}}"
+                    width="{{navbar.logo.width}}"
+                    height="{{navbar.logo.height}}"
+                    src="{{navbar.logo.image}}"/>
+                    {{navbar.title}}</a>                
+                <input type="checkbox" id="nav-toggle" aria-label="Toggle Navigation Menu">
+                <label for="nav-toggle" class="nav-trigger d-lg-none">
+                    <span>{{navbar.menu}}</span>
+                </label>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">{% for n in navbar.item %}
+                        <li class="nav-item"><a class="nav-link px-3 text-uppercase small tracking-widest" href="{{n.url}}">{{n.nav}}</a></li>{% endfor %}
+                        <li class="nav-item ms-lg-4">
+                            <a href="{{navbar.button.url}}" class="btn btn-dark rounded-0 px-4 py-2 text-uppercase small tracking-widest">{{navbar.button.text}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mobile-menu d-lg-none" role="dialog" aria-label="Mobile Navigation">{% for n in navbar.item %}
+                    <a href="{{n.url}}" class="h1 serif text-dark text-decoration-none my-3">{{n.nav}}</a>{% endfor %}
+                    <label for="nav-toggle" class="mt-5 btn-alfie">Close Menu</label>
+                </div>
+            </div>
+        </nav>
+    </header>

@@ -1,0 +1,17 @@
+{% if hero.show %}<section class="section-padding text-center" 
+style="background-color: {{hero.color}}; margin-top: 80px; 
+background-image: url('{{ gallery.bg_image }}');">
+<div class="container py-5">
+<span class="text-uppercase small tracking-widest text-muted d-block mb-4">{{hero.info}}</span>
+<h1 class="display-1 fw-bold serif mb-5">{{hero.title}}</h1>
+<p class="lead mx-auto text-muted" style="max-width: 650px;">{{hero.description}}</p>
+<figure>
+<blockquote class="blockquote">
+{{hero.intro | markdown |safe}}
+</blockquote>
+<figcaption class="blockquote-footer">
+{{hero.intro_footer | markdown |safe}}
+</figcaption>
+</figure>
+</div>
+</section>{% endif %}
