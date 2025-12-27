@@ -17,11 +17,7 @@
 		"type": "git",
 		"url": "git://github.com/adamdjbrett/orenlyonsarchive.git"
 	},
-	"author": {
-		"name": "Adam Dj Brett",
-		"email": "info@adamdjbrett.com",
-		"url": "https://adamdjbrett.com/"
-	},
+	"author": "Adam Dj Brett <info@adamdjbrett.com> (https://adamdjbrett.com/)",
 	"license": "MIT",
 	"engines": {
 		"node": ">=22"
@@ -45,5 +41,11 @@
 		"eleventy-plugin-youtube-embed": "^1.13.1",
 		"lite-youtube-embed": "^0.3.4",
 		"markdown-it": "^14.1.0"
-	}
+	},
+	"main": "eleventy.config.js",
+	"keywords": [],
+	"bugs": {
+		"url": "https://github.com/adamdjbrett/orenlyonsarchive/issues"
+	},
+	"homepage": "https://github.com/adamdjbrett/orenlyonsarchive#readme"
 }
