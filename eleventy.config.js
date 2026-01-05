@@ -75,8 +75,8 @@ eleventyConfig.addTransform("minify-html", function (content) {
 
 eleventyConfig.on("eleventy.after", async () => {
 	if (process.env.NODE_ENV !== "production") return;
-	const { PurgeCSS } = await import("purgecss");
 	try {
+		const { PurgeCSS } = await import("purgecss");
 		const purgeCSSResult = await new PurgeCSS().purge({
 			content: ["_site/**/*.html"],
 			css: ["_site/css/index.css"],
@@ -88,12 +88,11 @@ eleventyConfig.on("eleventy.after", async () => {
 				]
 			}
 		});
-
-		if (purgeCSSResult[0] && purgeCSSResult[0].css) {
+		if (purgeCSSResult[0]?.css) {
 			await fs.promises.writeFile("_site/css/index.css", purgeCSSResult[0].css, "utf8");
 		}
 	} catch (err) {
-		console.error("PurgeCSS failed:", err);
+		console.warn("PurgeCSS warning:", err.message);
 	}
 });
 
@@ -104,7 +103,16 @@ eleventyConfig.on("eleventy.after", async () => {
 	eleventyConfig.addPlugin(HtmlBasePlugin);
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 	let md = new markdownIt({ html: true });
-	eleventyConfig.addFilter("markdown", (content) => md.render(content));
+	const memoizedMarkdown = (() => {
+		const cache = new Map();
+		return (content) => {
+			if (!cache.has(content)) {
+				cache.set(content, md.render(content));
+			}
+			return cache.get(content);
+		};
+	})();
+	eleventyConfig.addFilter("markdown", memoizedMarkdown);
 	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 	eleventyConfig.addPlugin(feedPlugin, {
 		type: "atom", // or "rss", "json"
@@ -136,8 +144,12 @@ eleventyConfig.on("eleventy.after", async () => {
 		checkDuplicates: false
 	});
 
+	let buildDate = null;
 	eleventyConfig.addShortcode("currentBuildDate", () => {
-		return (new Date()).toISOString();
+		if (!buildDate) {
+			buildDate = (new Date()).toISOString();
+		}
+		return buildDate;
 	});
 };
 

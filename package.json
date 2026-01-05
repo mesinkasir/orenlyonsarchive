@@ -27,8 +27,7 @@
 		"@11ty/eleventy-navigation": "^1.0.4",
 		"@11ty/eleventy-plugin-rss": "^2.0.4",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
-		"@minify-html/node": "^0.15.0",
-		"@minify-html/node-darwin-arm64": "^0.18.1",
+		"@minify-html/node": "^0.18.1",
 		"clean-css": "^5.3.3",
 		"cross-env": "^7.0.3",
 		"luxon": "^3.6.1",
@@ -40,6 +39,7 @@
 	},
 	"dependencies": {
 		"@11ty/font-awesome": "^1.0.0",
+		"@minify-html/node-darwin-arm64": "^0.18.1",
 		"eleventy-plugin-youtube-embed": "^1.13.1",
 		"lite-youtube-embed": "^0.3.4",
 		"markdown-it": "^14.1.0"
