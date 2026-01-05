@@ -13,11 +13,29 @@ import CleanCSS from "clean-css";
 import fs from "node:fs";
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
+	// Add readFile filter for inlining CSS
+	eleventyConfig.addNunjucksFilter("readFile", (filePath) => {
+		console.log(`[readFile filter] Called with path: ${filePath}`);
+		try {
+			const content = fs.readFileSync(filePath, "utf8");
+			console.log(`[readFile filter] Successfully read ${content.length} bytes`);
+			// Return content as-is (Nunjucks will handle it)
+			return content;
+		} catch (err) {
+			console.error(`[readFile filter] Error reading file ${filePath}:`, err.message);
+			return "";
+		}
+	});
+
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
 		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
 	});
+
+	// Copy CSS file to output
+	eleventyConfig.addPassthroughCopy("css/index.css");
+
 	eleventyConfig.addPlugin(embedYouTube, {
   lite: true,
 });
@@ -56,6 +74,15 @@ eleventyConfig.addTransform("minify-html", function (content) {
 	}
 
 	try {
+		console.log("[minify-html] Before minify - looking for <style> tags:");
+		const styleMatch = content.match(/<style[^>]*>([^<]*)<\/style>/);
+		if (styleMatch) {
+			console.log(`[minify-html] Found style tag with ${styleMatch[1].length} bytes`);
+			console.log(`[minify-html] Content preview: "${styleMatch[1].substring(0, 100)}"`);
+		} else {
+			console.log("[minify-html] No style tags found with content");
+		}
+		
 		const result = minifyHtml.minify(Buffer.from(content), {
 			keep_closing_tags: true,
 			keep_comments: false,
