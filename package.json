@@ -39,7 +39,6 @@
 	},
 	"dependencies": {
 		"@11ty/font-awesome": "^1.0.0",
-		"@minify-html/node-darwin-arm64": "^0.18.1",
 		"eleventy-plugin-youtube-embed": "^1.13.1",
 		"lite-youtube-embed": "^0.3.4",
 		"markdown-it": "^14.1.0"
