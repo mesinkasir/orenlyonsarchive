@@ -1,7 +1,7 @@
         <section class="section-padding text-center"
         style="background-image: url('{{ gallery.bg_image }}'); background-color: {{ gallery.color or 'white' }}; color: {{gallery.font_color or 'inherit'}}">
             <div class="container">
-                <h3 class="display-4 fw-bold serif mb-4 mb-4">{{founding.title}}</h3>
+                <h2 class="display-4 fw-bold serif mb-4 mb-4">{{founding.title}}</h2>
                 <p class="lead mb-5 opacity-75 mx-auto" style="max-width: 600px;">{{founding.description}}</p>
                 {{founding.content | markdown | safe}}
                 <a href="{{founding.url}}" 

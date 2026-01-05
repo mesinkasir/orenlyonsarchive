@@ -1,10 +1,11 @@
-    <header>
+    <header role="banner">
         <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom py-3" aria-label="Main Navigation">
             <div class="container">
                 <a class="navbar-brand fw-bold serif fs-3 text-uppercase tracking-tighter" href="{{metadata.url}}" aria-label="{{navbar.title}}">
-                    <img class="img-fluid me-3" alt="{{navbar.title}}"
+                    <img class="me-3" alt="{{navbar.logo.image_alt or navbar.title}}"
                     width="{{navbar.logo.width}}"
                     height="{{navbar.logo.height}}"
+                    style="width: {{navbar.logo.width}}; height: {{navbar.logo.height}}; object-fit: contain;"
                     src="{{navbar.logo.image}}"/>
                     {{navbar.title}}</a>                
                 <input type="checkbox" id="nav-toggle" aria-label="Toggle Navigation Menu">

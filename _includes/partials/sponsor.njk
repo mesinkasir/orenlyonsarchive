@@ -1,14 +1,20 @@
 <section id="{{sponsor.ids}}" class="section-padding" style="background-image: url('{{ sponsor.bg_image }}'); background-color: {{ sponsor.color or 'white' }}; color: {{sponsor.font_color or 'inherit'}}">
     <div class="container">
         <div class="col-md-10 mx-auto text-center">
-        <h3 class="display-4 serif fw-bold mb-5">{{sponsor.title}}</h3>
+        <h2 class="display-4 serif fw-bold mb-5">{{sponsor.title}}</h2>
         <p>{{sponsor.description}}</p>
         </div>
         <div class="row g-4 justify-content-center">{% for g in sponsor.item %}
             <div class="col-md-3 col-6 p-3">
                 <div class="ratio ratio-1x1">
-                <a href="{{g.url}}" target="_blank" class="bg-white d-flex">
-                    <img src="{{g.image}}" loading="lazy" class="bg-white img-fluid p-3 zoom" alt="{{g.alt}}">
+                <a href="{{g.url}}" target="_blank" class="bg-white d-flex align-items-center justify-content-center">
+                    <img src="{{g.image}}"
+                         loading="lazy"
+                         class="bg-white img-fluid p-3 zoom"
+                         alt="{{g.alt}}"
+                         width="{{g.width or 157}}"
+                         height="{{g.height or 157}}"
+                         style="object-fit: contain; width: {{g.width or '157'}}px; height: {{g.height or '157'}}px;">
                 </a>
                 </div>
             </div>

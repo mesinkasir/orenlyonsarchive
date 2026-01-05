@@ -1,0 +1,5 @@
+{
+  forms: [
+    { from: '/contact', to: 'info@indigenousvalues.org', then: '/thank-you' },
+  ],
+}

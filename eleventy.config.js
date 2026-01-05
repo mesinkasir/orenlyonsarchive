@@ -8,8 +8,9 @@ import markdownIt from "markdown-it";
 import embedYouTube from "eleventy-plugin-youtube-embed";
 import eleventyPluginYoutubeEmbed from 'eleventy-plugin-youtube-embed';
 import yaml from "js-yaml";
-import htmlmin from "html-minifier-terser";
+import minifyHtml from "@minify-html/node";
 import CleanCSS from "clean-css";
+import fs from "node:fs";
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
@@ -26,7 +27,8 @@ eleventyConfig.addPlugin(fontAwesomePlugin);
 		.addPassthroughCopy({
 			"./public/": "/"
 		})
-		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
+		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl")
+		.addPassthroughCopy("xmit.json");
 	eleventyConfig.addWatchTarget("css/**/*.css");
 	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
 	eleventyConfig.addBundle("css", {
@@ -47,30 +49,52 @@ eleventyConfig.addPlugin(fontAwesomePlugin);
         ]
 	});
 
-eleventyConfig.addTransform("htmlmin", async function (content) {
-  const isProduction = process.env.NODE_ENV === "production";
+eleventyConfig.addTransform("minify-html", function (content) {
+	const isProduction = process.env.NODE_ENV === "production";
+	if (!isProduction || !this.page.outputPath || !this.page.outputPath.endsWith(".html")) {
+		return content;
+	}
 
-  if (isProduction && this.page.outputPath && this.page.outputPath.endsWith(".html")) {
-    try {
-      const minified = await htmlmin.minify(content, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true,
-        // --- SETTING PALING AMAN ---
-        minifyCSS: false,        // Jangan ganggu CSS karena banyak SVG panjang
-        minifyJS: false,         // Jangan ganggu JS agar tidak error di tengah
-        ignoreCustomFragments: [ /<script.*>[\s\S]*?<\/script>/ ], // Abaikan script
-        decodeEntities: true,
-        processConditionalComments: true
-      });
-      return minified;
-    } catch (err) {
-      // JIKA ERROR, ELEVENTY AKAN MENGEMBALIKAN KODE ASLI (TIDAK TERPOTONG)
-      console.error("Minifier Failed:", err);
-      return content; 
-    }
-  }
-  return content;
+	try {
+		const result = minifyHtml.minify(Buffer.from(content), {
+			keep_closing_tags: true,
+			keep_comments: false,
+			keep_html_and_head_opening_tags: false,
+			keep_spaces_between_attributes: false,
+			minify_css: true,
+			minify_js: true,
+			remove_bangs: true,
+			remove_processing_instructions: true,
+		});
+		return result.toString();
+	} catch (err) {
+		console.error("minify-html failed:", err);
+		return content;
+	}
+});
+
+eleventyConfig.on("eleventy.after", async () => {
+	if (process.env.NODE_ENV !== "production") return;
+	const { PurgeCSS } = await import("purgecss");
+	try {
+		const purgeCSSResult = await new PurgeCSS().purge({
+			content: ["_site/**/*.html"],
+			css: ["_site/css/index.css"],
+			safelist: {
+				standard: [
+					/^btn/, /^navbar/, /^nav-/, /^container/, /^row/, /^col-/, /^ratio/, /^modal/,
+					/^bg-/, /^text-/, /^d-/, /^ms-/, /^me-/, /^mt-/, /^mb-/, /^p-/, /^g-/, /^fs-/,
+					/^fw-/, /^h\d$/, /^w-/, /^lh-/, /^opacity-/, /^tracking-/, /^serif/, /^zoom/
+				]
+			}
+		});
+
+		if (purgeCSSResult[0] && purgeCSSResult[0].css) {
+			await fs.promises.writeFile("_site/css/index.css", purgeCSSResult[0].css, "utf8");
+		}
+	} catch (err) {
+		console.error("PurgeCSS failed:", err);
+	}
 });
 
 	eleventyConfig.addPlugin(pluginSyntaxHighlight, {

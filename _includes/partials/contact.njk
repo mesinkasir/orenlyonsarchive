@@ -7,7 +7,7 @@
                         <address class="mt-4 fs-5 opacity-75">{{contact.address}}</address>
                     </div>
                     <div class="col-md-7 p-3 p-md-5">
-                        <form class="form-underlined" action="{{formspree_id}}" method="POST">
+                       <form action="/contact" method="POST" enctype="multipart/form-data">
                             <div class="mb-4">
                                 <label for="n" class="small text-uppercase tracking-widest text-muted">Name</label>
                                 <input type="text" id="name" name="name" class="form-control" required placeholder="Your Name">
@@ -15,6 +15,10 @@
                             <div class="mb-4">
                                 <label for="e" class="small text-uppercase tracking-widest text-muted">Email</label>
                                 <input type="email" id="email" name="email" class="form-control" required placeholder="info@domain.com">
+                            </div>
+                            <div class="mb-4">
+                                <label for="m" class="small text-uppercase tracking-widest text-muted">Message</label>
+                                <textarea id="message" name="message" rows="6" class="form-control" required placeholder="Your Message"></textarea>
                             </div>
                             <button type="submit" class="btn btn-dark rounded-0 px-5 py-3 tracking-widest text-uppercase small">{{contact.button}}</button>
                         </form>

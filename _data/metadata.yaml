@@ -3,11 +3,11 @@ description: "A Transformative Initiative for Global Impact at Syracuse Universi
 image: "/img/lyons.jpg"
 language: "en"
 locale: en_US
-favicon: /img/lyons.jpg
-url: "http://localhost:8080"
+favicon: /img/book.svg
+url: "https://orenlyonsarchive.com"
 
 metasocial:
-  - facebook: "https://www.facebook.com/***"
-  - twitteruser: "@---"
-  - twitter: "https://x.com/---"
+  - facebook: "https://www.facebook.com/indigenousvalues"
+  - twitteruser: "@indigenousVI"
+  - twitter: "https://x.com/indigenousVI"
 

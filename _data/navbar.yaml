@@ -1,7 +1,8 @@
 logo: 
-  image: https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png
-  width: "30px"
-  height: "30px"
+  image: /img/book.svg
+  image_alt: "Oren Lyons Archive Logo"
+  width: "60px"
+  height: "60px"
 title: Oren Lyons
 menu: "MENU"
 item: 

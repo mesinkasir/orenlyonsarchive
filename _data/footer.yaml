@@ -1,18 +1,15 @@
-title: Oren Lyons
-copyrights: © 2025 Oren Lyons
+title: Oren Lyons Archive
+copyrights: © 2025 Oren Lyons Archive
 color: "#000"
 font_color: "#fff"
 ids: contact
 social :
-  - url: https://fb.com/***
+  - url: https://facebook.com/indigenousvalues
     icon: fab fa-facebook
     title: Facebook
-  - url: https://x.com/***
+  - url: https://x.com/indigenousVI
     icon: fab fa-twitter
     title: Twitter
-  - url: https://ig.com/***
+  - url: https://instagram.com/indigenousvalues
     icon: fab fa-instagram
     title: Instagram
-  - url: https://github.com/***
-    icon: fab fa-github
-    title: Github
