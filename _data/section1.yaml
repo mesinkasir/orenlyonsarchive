@@ -120,7 +120,7 @@ item:
 
     button: 
       - text: Support Now
-        url: /#contact
+        url: https://www.paypal.com/ncp/payment/QRQTTDALVCUDE
 
   - title: "Beyond the Archive: Deepening Institutional Impact"
     ids: beyonds
@@ -135,8 +135,8 @@ item:
         Securing funding to formally launch collaborations between the archive and faculty from the Center for Global Indigenous Culture and Environmental Justice, embedding archive access into courses and programs.
         Supporting Syracuse University's Haudenosaunee Promise Scholarship that allows students from the Six Nations to attend the University tuition-free, making it one of the nation’s leading programs for Indigenous students. Establish an endowment or dedicated fund to safeguard the program's sustainability and support its development to meet rising enrollment and resource needs.
     button: 
-      - text: Support Now
-        url: /#contact
+      - text: Support The Project
+        url: https://www.paypal.com/ncp/payment/QRQTTDALVCUDE
 
   - title: Join Us in this Historic Initiative
     ids: joins

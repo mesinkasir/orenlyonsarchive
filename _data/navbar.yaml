@@ -19,5 +19,5 @@ item:
   - nav: Sponsors
     url: "#sponsors"
 button: 
-  text: Contact Now
-  url: "#contact"
+  text: Donate
+  url: "https://www.paypal.com/ncp/payment/QRQTTDALVCUDE"
