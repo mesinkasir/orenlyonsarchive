@@ -4,7 +4,7 @@ image: "/img/lyons.jpg"
 language: "en"
 locale: en_US
 favicon: /img/book.svg
-url: "https://orenlyonsarchive.com"
+url: "https://orenlyonsarchive.org"
 
 metasocial:
   - facebook: "https://www.facebook.com/indigenousvalues"
