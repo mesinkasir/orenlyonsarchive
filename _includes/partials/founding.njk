@@ -1,10 +1,10 @@
         <section class="section-padding text-center"
-        style="background-image: url('{{ gallery.bg_image }}'); background-color: {{ gallery.color or 'white' }}; color: {{gallery.font_color or 'inherit'}}">
+        style="background-image: url('{{ founding.bg_image }}'); background-color: {{ founding.color or 'white' }}; color: {{ founding.font_color or 'inherit'}}">
             <div class="container">
                 <h2 class="display-4 fw-bold serif mb-4 mb-4">{{founding.title}}</h2>
                 <p class="lead mb-5 opacity-75 mx-auto" style="max-width: 600px;">{{founding.description}}</p>
                 {{founding.content | markdown | safe}}
-                <a href="{{founding.url}}" 
+                <a href="{{founding.button.url}}" 
                 class="btn mt-5 btn-alfie rounded-0 px-5 py-3 tracking-widest text-uppercase small">{{founding.button.text}}</a>
             </div>
         </section>

@@ -18,6 +18,8 @@ item:
     url: "#gallery"
   - nav: Sponsors
     url: "#sponsors"
+  - nav: Contact
+    url: "#contact" 
 button: 
   text: Donate
   url: "https://www.paypal.com/ncp/payment/QRQTTDALVCUDE"
