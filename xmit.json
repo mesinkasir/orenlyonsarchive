@@ -1,5 +1,5 @@
 {
   forms: [
-    { from: '/contact', to: 'info@indigenousvalues.org', then: '/thank-you' },
+    { from: '/contact', to: 'info@orenlyonsarchive.org', then: '/thank-you' },
   ],
 }
