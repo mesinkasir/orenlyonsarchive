@@ -25,14 +25,11 @@
           </div>
           {% endif %}        
           {% if s.media %}
-        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
-          <video controls playsinline preload="metadata" class="w-100">
-            <source src="{{ s.media.webm }}" type="video/webm">
-            <source src="{{ s.media.mp4 }}" type="video/mp4">
-            <source src="{{ s.media.ogg }}" type="video/ogg">
-            Your browser does not support the video tag.
-          </video>
+          {% for m in s.media %}
+        <div style="position:relative;padding-top:56.25%;" class="mb-5 shadow-sm">
+          <iframe src="{{ m.embed }}" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
         </div>
+          {% endfor %}
         {% endif %}  
           {% if s.video %}
           <div class="ratio ratio-16x9">
@@ -55,14 +52,11 @@
             <img src="{{ s.image }}" class="img-cover-article mb-4" alt="{{ s.image_alt or s.title }}" loading="{{ loading_attr }}" decoding="async" width="{{ s.image_width or 1200 }}" height="{{ s.image_height or 800 }}">
             {% endif %}
             {% if s.media %}
-        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
-          <video controls playsinline preload="metadata" class="w-100">
-            <source src="{{ s.media.webm }}" type="video/webm">
-            <source src="{{ s.media.mp4 }}" type="video/mp4">
-            <source src="{{ s.media.ogg }}" type="video/ogg">
-            Your browser does not support the video tag.
-          </video>
+            {% for m in s.media %}
+        <div style="position:relative;padding-top:56.25%;" class="mb-5 shadow-sm">
+          <iframe src="{{ m.embed }}" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
         </div>
+            {% endfor %}
         {% endif %}
             {% if s.video %}
               <div class="ratio ratio-16x9 mb-4">
@@ -95,14 +89,11 @@
           </div>
           {% endif %}
           {% if s.media %}
-        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
-          <video controls playsinline preload="metadata" class="w-100">
-            <source src="{{ s.media.webm }}" type="video/webm">
-            <source src="{{ s.media.mp4 }}" type="video/mp4">
-            <source src="{{ s.media.ogg }}" type="video/ogg">
-            Your browser does not support the video tag.
-          </video>
+          {% for m in s.media %}
+        <div style="position:relative;padding-top:56.25%;" class="mb-5 shadow-sm">
+          <iframe src="{{ m.embed }}" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
         </div>
+          {% endfor %}
         {% endif %}
           {% if s.video %}
           <div class="ratio ratio-16x9 mt-5 mb-2">
