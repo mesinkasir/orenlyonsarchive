@@ -1,4 +1,6 @@
-# orenlyonsarchive
+[![Deploy Eleventy to XMIT](https://github.com/adamdjbrett/orenlyonsarchive/actions/workflows/xmit-deploy.yml/badge.svg)](https://github.com/adamdjbrett/orenlyonsarchive/actions/workflows/xmit-deploy.yml)
+# [Oren Lyons Archive](http://orenlyonsarchive.com/)
+
 
 ### How to
 + Setup configuration on `_data/metadata.yaml`
