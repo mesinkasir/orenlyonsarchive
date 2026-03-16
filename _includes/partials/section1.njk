@@ -23,7 +23,17 @@
                  height="{{ s.image_height or 800 }}"
                  style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
           </div>
-          {% endif %}          
+          {% endif %}        
+          {% if s.media %}
+        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
+          <video controls playsinline preload="metadata" class="w-100">
+            <source src="{{ s.media.webm }}" type="video/webm">
+            <source src="{{ s.media.mp4 }}" type="video/mp4">
+            <source src="{{ s.media.ogg }}" type="video/ogg">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% endif %}  
           {% if s.video %}
           <div class="ratio ratio-16x9">
             <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen></iframe>
@@ -44,6 +54,16 @@
             {% if isCollection %}{% set loading_attr = 'lazy' %}{% endif %}
             <img src="{{ s.image }}" class="img-cover-article mb-4" alt="{{ s.image_alt or s.title }}" loading="{{ loading_attr }}" decoding="async" width="{{ s.image_width or 1200 }}" height="{{ s.image_height or 800 }}">
             {% endif %}
+            {% if s.media %}
+        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
+          <video controls playsinline preload="metadata" class="w-100">
+            <source src="{{ s.media.webm }}" type="video/webm">
+            <source src="{{ s.media.mp4 }}" type="video/mp4">
+            <source src="{{ s.media.ogg }}" type="video/ogg">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% endif %}
             {% if s.video %}
               <div class="ratio ratio-16x9 mb-4">
                 <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen loading="lazy"></iframe>
@@ -74,7 +94,16 @@
                  style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
           </div>
           {% endif %}
-          
+          {% if s.media %}
+        <div class="ratio ratio-16x9 mb-5 shadow-sm bg-dark">
+          <video controls playsinline preload="metadata" class="w-100">
+            <source src="{{ s.media.webm }}" type="video/webm">
+            <source src="{{ s.media.mp4 }}" type="video/mp4">
+            <source src="{{ s.media.ogg }}" type="video/ogg">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% endif %}
           {% if s.video %}
           <div class="ratio ratio-16x9 mt-5 mb-2">
             <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen></iframe>
@@ -85,8 +114,17 @@
         <div class="col-md-6 p-5 p-lg-5" style="text-align:{{s.text_align or 'center'}};">
           <div class="p-lg-5">
             <h2 class="display-4 fw-bold serif mb-4">{{ s.title }}</h2>
-            <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{% else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
-            {% if s.button %}{% for b in s.button %}<a href="{{ b.url }}" class="btn-alfie">{{ b.text }}</a>{% endfor %}{% endif %}
+            <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{
+              % else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
+            {% if s.button %}
+  {% for b in s.button %}
+    <a href="{{ b.url }}" 
+       class="btn btn-outline-dark rounded-0 {% if b.big %}p-5 p-md-5 d-inline-block w-100 w-md-auto{% endif %}"
+       {% if b.download == "yes" %}download{% endif %}>
+       {{ b.text }}
+    </a>
+  {% endfor %}
+{% endif %}
           </div>
         </div>
       </div>
