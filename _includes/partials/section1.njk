@@ -6,7 +6,15 @@
           <div class="p-lg-5 p-3 p-md-5 col-md-10 mx-auto">
             <h2 class="display-4 fw-bold serif mb-4">{{ s.title }}</h2>
             <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{% else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
-            {% if s.button %}{% for b in s.button %}<a href="{{ b.url }}" class="btn-alfie" aria-label="Read More {{ s.title }}">{{ b.text }}</a>{% endfor %}{% endif %}
+            
+            {% if s.button %}
+              {% for b in s.button %}
+                <a href="{{ b.url }}" class="btn btn-outline-dark rounded-0 d-inline-flex align-items-center justify-content-center {% if b.big %}p-3 p-md-3{% endif %}" {% if b.download == "yes" %}download{% endif %}>
+                  {% if b.icon %}<img src="{{ b.icon }}" alt="icon" class="btn-icon me-2" style="width:20px; height:auto;">{% endif %}
+                  <span>{{ b.text }}</span>
+                </a>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>        
         <div class="col-md-6">
@@ -15,24 +23,14 @@
           {% set loading_attr = 'eager' %}
           {% if isCollection %}{% set loading_attr = 'lazy' %}{% endif %}
           <div class="w-100 h-100">
-            <img src="{{ s.image }}"
-                 alt="{{ s.image_alt or s.title }}"
-                 loading="{{ loading_attr }}"
-                 decoding="async"
-                 width="{{ s.image_width or 1200 }}"
-                 height="{{ s.image_height or 800 }}"
-                 style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
+            <img src="{{ s.image }}" alt="{{ s.image_alt or s.title }}" loading="{{ loading_attr }}" decoding="async" width="{{ s.image_width or 1200 }}" height="{{ s.image_height or 800 }}" style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
           </div>
           {% endif %}        
          {% if s.media %}
-<div class="ratio ratio-16x9 mt-5 mb-2">
-  <iframe 
-    src="{{ s.media }}" 
-    title="{{ s.title }}" 
-    allow="autoplay; fullscreen">
-  </iframe>
-</div>
-{% endif %}
+          <div class="ratio ratio-16x9 mt-5 mb-2">
+            <iframe src="{{ s.media }}" title="{{ s.title }}" allow="autoplay; fullscreen"></iframe>
+          </div>
+          {% endif %}
           {% if s.video %}
           <div class="ratio ratio-16x9">
             <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen></iframe>
@@ -41,6 +39,7 @@
         </div>
       </div>
     </article>
+
   {% elif s.position == "full" %}
     <article id="{{ s.ids }}" class="section-padding" style="background-image: url('{{ s.bg_image }}'); background-color: {{ s.color or 'white' }}; color: {{s.font_color or 'inherit'}}">
       <div class="container align-items-center">
@@ -54,26 +53,32 @@
             <img src="{{ s.image }}" class="img-cover-article mb-4" alt="{{ s.image_alt or s.title }}" loading="{{ loading_attr }}" decoding="async" width="{{ s.image_width or 1200 }}" height="{{ s.image_height or 800 }}">
             {% endif %}
             {% if s.media %}
-<div class="ratio ratio-16x9 mt-5 mb-2">
-  <iframe 
-    src="{{ s.media }}" 
-    title="{{ s.title }}" 
-    allow="autoplay; fullscreen">
-  </iframe>
-</div>
-{% endif %}
+            <div class="ratio ratio-16x9 mt-5 mb-2">
+              <iframe src="{{ s.media }}" title="{{ s.title }}" allow="autoplay; fullscreen"></iframe>
+            </div>
+            {% endif %}
             {% if s.video %}
               <div class="ratio ratio-16x9 mb-4">
                 <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen loading="lazy"></iframe>
               </div>
-            {% endif %}<div class="col-md-10 mx-auto">
-            <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{% else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
-            {% if s.button %}{% for b in s.button %}<a href="{{ b.url }}" class="btn-alfie">{{ b.text }}</a>{% endfor %}{% endif %}
-          </div>
+            {% endif %}
+            <div class="col-md-10 mx-auto">
+              <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{% else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
+              
+              {% if s.button %}
+                {% for b in s.button %}
+                  <a href="{{ b.url }}" class="btn btn-outline-dark rounded-0 d-inline-flex align-items-center justify-content-center {% if b.big %}p-3 p-md-3w-md-auto{% endif %}" {% if b.download == "yes" %}download{% endif %}>
+                    {% if b.icon %}<img src="{{ b.icon }}" alt="icon" class="btn-icon me-2" style="width:20px; height:auto;">{% endif %}
+                    <span>{{ b.text }}</span>
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
     </article>
+
   {% else %}
     <article id="{{ s.ids }}" class="container-fluid p-0" style="background-image: url('{{ s.bg_image }}'); background-color: {{ s.color or 'white' }}; color: {{s.font_color or 'inherit'}}">
       <div class="row g-0 align-items-stretch">
@@ -83,24 +88,14 @@
           {% set loading_attr = 'eager' %}
           {% if isCollection %}{% set loading_attr = 'lazy' %}{% endif %}
           <div class="w-100 h-100">
-            <img src="{{ s.image }}"
-                 alt="{{ s.image_alt or s.title }}"
-                 loading="{{ loading_attr }}"
-                 decoding="async"
-                 width="{{ s.image_width or 1200 }}"
-                 height="{{ s.image_height or 800 }}"
-                 style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
+            <img src="{{ s.image }}" alt="{{ s.image_alt or s.title }}" loading="{{ loading_attr }}" decoding="async" width="{{ s.image_width or 1200 }}" height="{{ s.image_height or 800 }}" style="object-fit: cover; width: 100%; height: 100%; min-height: 500px; display: block;">
           </div>
           {% endif %}
           {% if s.media %}
-<div class="ratio ratio-16x9 mt-5 mb-2">
-  <iframe 
-    src="{{ s.media }}" 
-    title="{{ s.title }}" 
-    allow="autoplay; fullscreen">
-  </iframe>
-</div>
-{% endif %}
+          <div class="ratio ratio-16x9 mt-5 mb-2">
+            <iframe src="{{ s.media }}" title="{{ s.title }}" allow="autoplay; fullscreen"></iframe>
+          </div>
+          {% endif %}
           {% if s.video %}
           <div class="ratio ratio-16x9 mt-5 mb-2">
             <iframe src="{{ s.video }}" title="{{ s.title }}" allowfullscreen></iframe>
@@ -111,17 +106,18 @@
         <div class="col-md-6 p-5 p-lg-5" style="text-align:{{s.text_align or 'center'}};">
           <div class="p-lg-5">
             <h2 class="display-4 fw-bold serif mb-4">{{ s.title }}</h2>
-            <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{
-              % else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
+            <div {% if s.font_color %}class="mb-5 lh-lg" style="color: {{s.font_color or 'inherit'}}"{% else %}class="mb-5  lh-lg"{% endif %}>{{ s.content | markdown | safe }}</div>
+            
             {% if s.button %}
-  {% for b in s.button %}
-    <a href="{{ b.url }}" 
-       class="btn btn-outline-dark rounded-0 {% if b.big %}p-5 p-md-5 d-inline-block w-100 w-md-auto{% endif %}"
-       {% if b.download == "yes" %}download{% endif %}>
-       {{ b.text }}
-    </a>
-  {% endfor %}
-{% endif %}
+              {% for b in s.button %}
+                <a href="{{ b.url }}" class="btn btn-outline-dark rounded-0 
+                d-inline-flex align-items-center justify-content-center 
+                {% if b.big %}p-3 p-md-3{% endif %}" {% if b.download == "yes" %}download{% endif %}>
+                   {% if b.icon %}<img src="{{ b.icon }}" alt="icon" class="btn-icon me-2" style="width:20px; height:auto;">{% endif %}
+                   <span>{{ b.text }}</span>
+                </a>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>

@@ -91,8 +91,15 @@ item:
 
         Cultural Preservation and Haudenosaunee Teachings—Secures a priceless collection of cultural knowledge for posterity, providing educational resources for future generations
     button: 
-      - text: Contact Us
+      - text: Button1
         url: /#contact
+        icon: /img/icon/wooden-lacrosse-sticks-crossed-shutterstock_1006053838-1080icon-bw.png
+      - text: Button2
+        url: /#contact
+        icon: /img/icon/wooden-lacrosse-sticks-crossed-shutterstock_1006053838-1080icon-bw.png
+      - text: Button3
+        url: /#contact
+        icon: /img/icon/wooden-lacrosse-sticks-crossed-shutterstock_1006053838-1080icon-bw.png
   
   - title: Opportunities for Support 
     ids: opportunities
