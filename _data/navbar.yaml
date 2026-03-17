@@ -10,6 +10,8 @@ item:
     url: "#"
   - nav: About
     url: "#about"
+  - nav: Video
+    url: "#video"  
   - nav: Impact
     url: "#impact"
   - nav: Support
